@@ -9,934 +9,183 @@
     :root {
       --charcoal: #2A2A2A;
       --warm-black: #1A1814;
+      --deep-black: #0D0D0D;
       --cream: #FAF6F0;
       --warm-cream: #F5EDE3;
       --mustard: #D4A843;
       --mustard-light: #E8C76A;
       --mustard-dark: #B8922E;
       --sage: #8B9A7E;
-      --sage-light: #A8B89C;
       --terracotta: #C4705A;
       --soft-gray: #E8E4DE;
       --medium-gray: #9A9590;
       --schnauzer-silver: #B8B2AA;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--charcoal);
-      overflow-x: hidden;
-    }
-
-    /* ============ NAVIGATION ============ */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 1rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
-    }
-
-    nav.scrolled {
-      background: rgba(250, 246, 240, 0.95);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-      padding: 0.7rem 2.5rem;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      color: var(--warm-black);
-    }
-
-    .nav-logo-icon {
-      width: 44px;
-      height: 44px;
-      transition: transform 0.3s;
-    }
-
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; transition: background 0.4s, box-shadow 0.4s, padding 0.4s; }
+    nav.scrolled { background: rgba(13,13,13,0.95); backdrop-filter: blur(12px); box-shadow: 0 2px 20px rgba(0,0,0,0.3); padding: 0.7rem 2.5rem; }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: white; }
+    .nav-logo-icon { width: 44px; height: 44px; transition: transform 0.3s; }
     .nav-logo:hover .nav-logo-icon { transform: rotate(-8deg) scale(1.05); }
-
-    .nav-logo-text {
-      font-family: 'Fraunces', serif;
-      font-weight: 700;
-      font-size: 1.35rem;
-      letter-spacing: -0.02em;
-    }
-
+    .nav-logo-text { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.35rem; letter-spacing: -0.02em; }
     .nav-logo-text span { color: var(--mustard); }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--charcoal);
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      position: relative;
-      padding-bottom: 2px;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background: var(--mustard);
-      transition: width 0.3s;
-    }
-
+    .nav-links { display: flex; gap: 2rem; align-items: center; list-style: none; }
+    .nav-links a { text-decoration: none; color: rgba(255,255,255,0.8); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; position: relative; padding-bottom: 2px; transition: color 0.3s; }
+    .nav-links a:hover { color: white; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0%; height: 2px; background: var(--mustard); transition: width 0.3s; }
     .nav-links a:hover::after { width: 100%; }
+    .nav-cart { position: relative; cursor: pointer; color: white; }
+    .nav-cart-badge { position: absolute; top: -6px; right: -8px; background: var(--mustard); color: var(--warm-black); font-size: 0.65rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
-    .nav-cart {
-      position: relative;
-      cursor: pointer;
-    }
+    /* HERO — DARK */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding: 0 5%; position: relative; overflow: hidden; background: var(--deep-black); color: white; }
+    .hero::before { content: ''; position: absolute; top: -20%; right: -5%; width: 60%; height: 140%; background: radial-gradient(ellipse, rgba(212,168,67,0.06) 0%, transparent 60%); z-index: 0; }
+    .hero-content { display: flex; flex-direction: column; justify-content: center; padding-right: 4rem; position: relative; z-index: 1; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 0.4rem 1rem; font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.6); width: fit-content; margin-bottom: 1.5rem; animation: fadeSlideUp 0.8s ease-out 0.2s both; }
+    .hero-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mustard); animation: pulse 2s infinite; }
+    .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(3rem, 5.5vw, 5.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; animation: fadeSlideUp 0.8s ease-out 0.4s both; }
+    .hero h1 .highlight { color: var(--mustard); position: relative; display: inline-block; }
+    .hero h1 .highlight::after { content: ''; position: absolute; bottom: 4px; left: -2%; width: 104%; height: 12px; background: rgba(212,168,67,0.12); border-radius: 4px; z-index: -1; }
+    .hero-subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.55); line-height: 1.6; max-width: 480px; margin-bottom: 2.5rem; animation: fadeSlideUp 0.8s ease-out 0.6s both; }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; animation: fadeSlideUp 0.8s ease-out 0.8s both; }
 
-    .nav-cart-badge {
-      position: absolute;
-      top: -6px;
-      right: -8px;
-      background: var(--terracotta);
-      color: white;
-      font-size: 0.65rem;
-      font-weight: 700;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* ============ HERO ============ */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding: 0 5%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -30%;
-      right: -10%;
-      width: 70%;
-      height: 130%;
-      background: radial-gradient(ellipse, var(--warm-cream) 0%, transparent 70%);
-      z-index: 0;
-    }
-
-    .hero-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-right: 4rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--warm-cream);
-      border: 1px solid var(--soft-gray);
-      border-radius: 100px;
-      padding: 0.4rem 1rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--medium-gray);
-      width: fit-content;
-      margin-bottom: 1.5rem;
-      animation: fadeSlideUp 0.8s ease-out 0.2s both;
-    }
-
-    .hero-badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--sage);
-      animation: pulse 2s infinite;
-    }
-
-    .hero h1 {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(3rem, 5.5vw, 5.5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: var(--warm-black);
-      margin-bottom: 1.5rem;
-      animation: fadeSlideUp 0.8s ease-out 0.4s both;
-    }
-
-    .hero h1 .highlight {
-      color: var(--mustard);
-      position: relative;
-      display: inline-block;
-    }
-
-    .hero h1 .highlight::after {
-      content: '';
-      position: absolute;
-      bottom: 4px;
-      left: -2%;
-      width: 104%;
-      height: 12px;
-      background: rgba(212, 168, 67, 0.15);
-      border-radius: 4px;
-      z-index: -1;
-    }
-
-    .hero-subtitle {
-      font-size: 1.2rem;
-      color: var(--medium-gray);
-      line-height: 1.6;
-      max-width: 480px;
-      margin-bottom: 2.5rem;
-      animation: fadeSlideUp 0.8s ease-out 0.6s both;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      animation: fadeSlideUp 0.8s ease-out 0.8s both;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--warm-black);
-      color: var(--cream);
-      padding: 1rem 2rem;
-      border-radius: 100px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
-      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(26, 24, 20, 0.2);
-      background: #333;
-    }
-
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--mustard); color: var(--warm-black); padding: 1rem 2rem; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em; transition: transform 0.3s, box-shadow 0.3s, background 0.3s; border: none; cursor: pointer; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,168,67,0.3); background: var(--mustard-light); }
     .btn-primary svg { transition: transform 0.3s; }
     .btn-primary:hover svg { transform: translateX(3px); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: white; padding: 1rem 1.5rem; border-radius: 100px; text-decoration: none; font-weight: 500; font-size: 0.95rem; border: 1.5px solid rgba(255,255,255,0.2); transition: border-color 0.3s, background 0.3s; cursor: pointer; }
+    .btn-secondary:hover { border-color: var(--mustard); background: rgba(212,168,67,0.08); }
 
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: transparent;
-      color: var(--charcoal);
-      padding: 1rem 1.5rem;
-      border-radius: 100px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      border: 1.5px solid var(--soft-gray);
-      transition: border-color 0.3s, background 0.3s;
-      cursor: pointer;
-    }
+    .hero-visual { display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
+    .hero-illustration { width: 100%; max-width: 480px; position: relative; animation: fadeSlideUp 1s ease-out 0.3s both; }
+    .hero-mascot { width: 100%; height: auto; filter: drop-shadow(0 0 60px rgba(212,168,67,0.12)); animation: mascotFloat 4s ease-in-out infinite; border-radius: 24px; }
+    @keyframes mascotFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
-    .btn-secondary:hover {
-      border-color: var(--mustard);
-      background: rgba(212, 168, 67, 0.05);
-    }
+    .floating-tag { position: absolute; background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 0.75rem 1.1rem; display: flex; align-items: center; gap: 0.6rem; box-shadow: 0 8px 30px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; color: white; animation: float 4s ease-in-out infinite; }
+    .floating-tag.tag-1 { top: 10%; right: -8%; animation-delay: 0s; }
+    .floating-tag.tag-2 { bottom: 15%; left: -8%; animation-delay: 1.5s; }
+    .floating-tag.tag-3 { top: 55%; right: -12%; animation-delay: 0.8s; }
+    .tag-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .tag-icon.mustard { background: rgba(212,168,67,0.2); }
+    .tag-icon.sage { background: rgba(139,154,126,0.2); }
+    .tag-icon.terracotta { background: rgba(196,112,90,0.2); }
 
-    .hero-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-illustration {
-      width: 100%;
-      max-width: 560px;
-      position: relative;
-      animation: fadeSlideUp 1s ease-out 0.3s both;
-    }
-
-    .hero-illustration svg {
-      width: 100%;
-      height: auto;
-      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.08));
-    }
-
-    .floating-tag {
-      position: absolute;
-      background: white;
-      border-radius: 16px;
-      padding: 0.75rem 1.1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-      font-size: 0.85rem;
-      font-weight: 600;
-      animation: float 4s ease-in-out infinite;
-    }
-
-    .floating-tag.tag-1 {
-      top: 15%;
-      right: -5%;
-      animation-delay: 0s;
-    }
-
-    .floating-tag.tag-2 {
-      bottom: 20%;
-      left: -5%;
-      animation-delay: 1.5s;
-    }
-
-    .floating-tag.tag-3 {
-      top: 55%;
-      right: -10%;
-      animation-delay: 0.8s;
-    }
-
-    .tag-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-    }
-
-    .tag-icon.mustard { background: rgba(212, 168, 67, 0.15); }
-    .tag-icon.sage { background: rgba(139, 154, 126, 0.15); }
-    .tag-icon.terracotta { background: rgba(196, 112, 90, 0.15); }
-
-    /* ============ SOCIAL PROOF BAR ============ */
-    .social-proof {
-      padding: 2rem 5%;
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      border-top: 1px solid var(--soft-gray);
-      border-bottom: 1px solid var(--soft-gray);
-    }
-
-    .proof-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: var(--medium-gray);
-      font-size: 0.9rem;
-    }
-
+    /* SOCIAL PROOF */
+    .social-proof { padding: 2rem 5%; display: flex; justify-content: center; gap: 3rem; border-top: 1px solid var(--soft-gray); border-bottom: 1px solid var(--soft-gray); }
+    .proof-item { display: flex; align-items: center; gap: 0.75rem; color: var(--medium-gray); font-size: 0.9rem; }
     .proof-item svg { color: var(--mustard); flex-shrink: 0; }
     .proof-item strong { color: var(--charcoal); }
 
-    /* ============ COLLECTIONS ============ */
-    .collections {
-      padding: 6rem 5%;
-    }
+    /* COLLECTIONS */
+    .collections { padding: 6rem 5%; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-eyebrow { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--mustard); font-weight: 600; margin-bottom: 0.75rem; }
+    .section-title { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; letter-spacing: -0.02em; color: var(--warm-black); margin-bottom: 0.75rem; }
+    .section-subtitle { color: var(--medium-gray); font-size: 1.05rem; max-width: 520px; margin: 0 auto; }
+    .collections-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+    .collection-card { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
+    .collection-card-bg { position: absolute; inset: 0; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .collection-card:hover .collection-card-bg { transform: scale(1.05); }
+    .collection-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,24,20,0.7) 0%, rgba(26,24,20,0.1) 50%, transparent 100%); transition: background 0.4s; }
+    .collection-card:hover .collection-card-overlay { background: linear-gradient(to top, rgba(26,24,20,0.8) 0%, rgba(26,24,20,0.2) 60%, transparent 100%); }
+    .collection-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; color: white; }
+    .collection-card-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mustard-light); font-weight: 600; margin-bottom: 0.5rem; }
+    .collection-card-title { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .collection-card-count { font-size: 0.85rem; opacity: 0.7; }
+    .collection-card-arrow { position: absolute; top: 1.5rem; right: 1.5rem; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; color: white; transform: translate(-8px, 8px); opacity: 0; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .collection-card:hover .collection-card-arrow { transform: translate(0, 0); opacity: 1; }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-
-    .section-eyebrow {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--mustard);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--warm-black);
-      margin-bottom: 0.75rem;
-    }
-
-    .section-subtitle {
-      color: var(--medium-gray);
-      font-size: 1.05rem;
-      max-width: 520px;
-      margin: 0 auto;
-    }
-
-    .collections-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .collection-card {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      cursor: pointer;
-      group: true;
-    }
-
-    .collection-card-bg {
-      position: absolute;
-      inset: 0;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .collection-card:hover .collection-card-bg {
-      transform: scale(1.05);
-    }
-
-    .collection-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(26,24,20,0.7) 0%, rgba(26,24,20,0.1) 50%, transparent 100%);
-      transition: background 0.4s;
-    }
-
-    .collection-card:hover .collection-card-overlay {
-      background: linear-gradient(to top, rgba(26,24,20,0.8) 0%, rgba(26,24,20,0.2) 60%, transparent 100%);
-    }
-
-    .collection-card-content {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 2rem;
-      color: white;
-    }
-
-    .collection-card-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--mustard-light);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .collection-card-title {
-      font-family: 'Fraunces', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .collection-card-count {
-      font-size: 0.85rem;
-      opacity: 0.7;
-    }
-
-    .collection-card-arrow {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      transform: translate(-8px, 8px);
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .collection-card:hover .collection-card-arrow {
-      transform: translate(0, 0);
-      opacity: 1;
-    }
-
-    /* ============ FEATURED PRODUCTS ============ */
-    .featured {
-      padding: 6rem 5%;
-      background: var(--warm-cream);
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .product-card {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-    }
-
-    .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.08);
-    }
-
-    .product-image {
-      aspect-ratio: 1;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .product-image-bg {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .product-card:hover .product-image-bg {
-      transform: scale(1.06);
-    }
-
-    .product-wishlist {
-      position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(6px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      cursor: pointer;
-      color: var(--medium-gray);
-      transition: color 0.3s, background 0.3s;
-    }
-
-    .product-wishlist:hover {
-      color: var(--terracotta);
-      background: white;
-    }
-
-    .product-badge {
-      position: absolute;
-      top: 0.75rem;
-      left: 0.75rem;
-      background: var(--mustard);
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.3rem 0.65rem;
-      border-radius: 6px;
-    }
-
-    .product-info {
-      padding: 1.1rem 1.25rem;
-    }
-
-    .product-category {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--medium-gray);
-      margin-bottom: 0.35rem;
-    }
-
-    .product-name {
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--warm-black);
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
-    }
-
-    .product-price {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .product-price .current {
-      font-weight: 700;
-      color: var(--warm-black);
-      font-size: 1.05rem;
-    }
-
-    .product-price .original {
-      font-size: 0.85rem;
-      color: var(--medium-gray);
-      text-decoration: line-through;
-    }
-
-    .product-rating {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      margin-top: 0.4rem;
-      font-size: 0.8rem;
-      color: var(--medium-gray);
-    }
-
+    /* PRODUCTS */
+    .featured { padding: 6rem 5%; background: var(--warm-cream); }
+    .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+    .product-card { background: white; border-radius: 16px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(0,0,0,0.08); }
+    .product-image { aspect-ratio: 1; overflow: hidden; position: relative; }
+    .product-image-bg { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .product-card:hover .product-image-bg { transform: scale(1.06); }
+    .product-wishlist { position: absolute; top: 0.75rem; right: 0.75rem; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.85); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; color: var(--medium-gray); transition: color 0.3s, background 0.3s; }
+    .product-wishlist:hover { color: var(--terracotta); background: white; }
+    .product-badge { position: absolute; top: 0.75rem; left: 0.75rem; background: var(--mustard); color: white; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.3rem 0.65rem; border-radius: 6px; }
+    .product-info { padding: 1.1rem 1.25rem; }
+    .product-category { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--medium-gray); margin-bottom: 0.35rem; }
+    .product-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1rem; color: var(--warm-black); margin-bottom: 0.5rem; line-height: 1.3; }
+    .product-price { display: flex; align-items: center; gap: 0.5rem; }
+    .product-price .current { font-weight: 700; color: var(--warm-black); font-size: 1.05rem; }
+    .product-price .original { font-size: 0.85rem; color: var(--medium-gray); text-decoration: line-through; }
+    .product-rating { display: flex; align-items: center; gap: 0.3rem; margin-top: 0.4rem; font-size: 0.8rem; color: var(--medium-gray); }
     .stars { color: var(--mustard); letter-spacing: 1px; }
 
-    /* ============ BREED SHOWCASE ============ */
-    .breeds {
-      padding: 6rem 5%;
-    }
-
-    .breeds-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      align-items: center;
-    }
-
-    .breeds-illustration {
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-
-    .breed-circle {
-      width: 380px;
-      height: 380px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .breed-circle .main {
-      font-size: 12rem;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-    }
-
-    .breed-orbit {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      animation: spin 25s linear infinite;
-    }
-
-    .breed-orbit-item {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      animation: counterspin 25s linear infinite;
-    }
-
+    /* BREEDS — DARK */
+    .breeds { padding: 6rem 5%; background: var(--deep-black); color: white; }
+    .breeds-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; align-items: center; }
+    .breeds-illustration { display: flex; justify-content: center; }
+    .breed-img-wrap { width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 70%); display: flex; align-items: center; justify-content: center; position: relative; }
+    .breed-img-wrap img { width: 280px; height: auto; border-radius: 16px; filter: drop-shadow(0 0 40px rgba(212,168,67,0.1)); }
+    .breed-orbit { position: absolute; width: 100%; height: 100%; animation: spin 25s linear infinite; }
+    .breed-orbit-item { position: absolute; width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; animation: counterspin 25s linear infinite; }
     .breed-orbit-item:nth-child(1) { top: -10px; left: 50%; transform: translateX(-50%); }
     .breed-orbit-item:nth-child(2) { bottom: -10px; left: 50%; transform: translateX(-50%); }
     .breed-orbit-item:nth-child(3) { top: 50%; left: -10px; transform: translateY(-50%); }
     .breed-orbit-item:nth-child(4) { top: 50%; right: -10px; transform: translateY(-50%); }
-
-    .breeds-content h2 {
-      font-family: 'Fraunces', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--warm-black);
-      margin-bottom: 1.25rem;
-    }
-
-    .breeds-content p {
-      color: var(--medium-gray);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-      font-size: 1.05rem;
-    }
-
-    .breed-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-bottom: 2rem;
-    }
-
-    .breed-tag {
-      background: white;
-      border: 1.5px solid var(--soft-gray);
-      border-radius: 100px;
-      padding: 0.5rem 1.1rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .breed-tag:hover, .breed-tag.active {
-      border-color: var(--mustard);
-      background: rgba(212, 168, 67, 0.08);
-      color: var(--mustard-dark);
-    }
-
+    .breeds-content h2 { font-family: 'Fraunces', serif; font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+    .breeds-content p { color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 1.5rem; font-size: 1.05rem; }
+    .breed-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+    .breed-tag { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 100px; padding: 0.5rem 1.1rem; font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.7); cursor: pointer; transition: all 0.3s; }
+    .breed-tag:hover, .breed-tag.active { border-color: var(--mustard); background: rgba(212,168,67,0.1); color: var(--mustard-light); }
     .breed-tag.active { font-weight: 600; }
 
-    /* ============ NEWSLETTER ============ */
-    .newsletter {
-      padding: 5rem 5%;
-      background: var(--warm-black);
-      color: white;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .newsletter::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 20% 50%, rgba(212, 168, 67, 0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 50%, rgba(139, 154, 126, 0.06) 0%, transparent 50%);
-    }
-
-    .newsletter-content {
-      position: relative;
-      z-index: 1;
-      max-width: 560px;
-      margin: 0 auto;
-    }
-
-    .newsletter h2 {
-      font-family: 'Fraunces', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-
+    /* NEWSLETTER */
+    .newsletter { padding: 5rem 5%; background: var(--warm-cream); text-align: center; }
+    .newsletter-content { max-width: 560px; margin: 0 auto; }
+    .newsletter h2 { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--warm-black); }
     .newsletter h2 span { color: var(--mustard); }
-
-    .newsletter p {
-      color: var(--schnauzer-silver);
-      margin-bottom: 2rem;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .newsletter-form {
-      display: flex;
-      gap: 0.75rem;
-      max-width: 460px;
-      margin: 0 auto;
-    }
-
-    .newsletter-form input {
-      flex: 1;
-      padding: 0.9rem 1.25rem;
-      border-radius: 100px;
-      border: 1.5px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.06);
-      color: white;
-      font-size: 0.95rem;
-      font-family: 'DM Sans', sans-serif;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
+    .newsletter p { color: var(--medium-gray); margin-bottom: 2rem; font-size: 1rem; line-height: 1.6; }
+    .newsletter-form { display: flex; gap: 0.75rem; max-width: 460px; margin: 0 auto; }
+    .newsletter-form input { flex: 1; padding: 0.9rem 1.25rem; border-radius: 100px; border: 1.5px solid var(--soft-gray); background: white; color: var(--charcoal); font-size: 0.95rem; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.3s; }
     .newsletter-form input::placeholder { color: var(--schnauzer-silver); }
     .newsletter-form input:focus { border-color: var(--mustard); }
+    .newsletter-form button { background: var(--warm-black); color: white; padding: 0.9rem 1.75rem; border-radius: 100px; border: none; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: background 0.3s, transform 0.3s; font-family: 'DM Sans', sans-serif; }
+    .newsletter-form button:hover { background: var(--charcoal); transform: translateY(-1px); }
 
-    .newsletter-form button {
-      background: var(--mustard);
-      color: var(--warm-black);
-      padding: 0.9rem 1.75rem;
-      border-radius: 100px;
-      border: none;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-      font-family: 'DM Sans', sans-serif;
-    }
-
-    .newsletter-form button:hover {
-      background: var(--mustard-light);
-      transform: translateY(-1px);
-    }
-
-    /* ============ FOOTER ============ */
-    footer {
-      padding: 4rem 5% 2rem;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-brand .nav-logo { margin-bottom: 1rem; }
-
-    .footer-brand p {
-      color: var(--medium-gray);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      max-width: 280px;
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: 1.25rem;
-    }
-
-    .footer-social a {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--soft-gray);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--charcoal);
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .footer-social a:hover {
-      background: var(--mustard);
-      color: white;
-    }
-
-    .footer-col h4 {
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-      margin-bottom: 1.25rem;
-      font-size: 1rem;
-      color: var(--warm-black);
-    }
-
+    /* FOOTER */
+    footer { padding: 4rem 5% 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto; }
+    .footer-brand p { color: var(--medium-gray); font-size: 0.9rem; line-height: 1.6; max-width: 280px; margin-top: 1rem; }
+    .footer-social { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
+    .footer-social a { width: 38px; height: 38px; border-radius: 50%; background: var(--soft-gray); display: flex; align-items: center; justify-content: center; color: var(--charcoal); text-decoration: none; font-size: 0.85rem; transition: background 0.3s, color 0.3s; }
+    .footer-social a:hover { background: var(--mustard); color: white; }
+    .footer-col h4 { font-family: 'Fraunces', serif; font-weight: 600; margin-bottom: 1.25rem; font-size: 1rem; color: var(--warm-black); }
     .footer-col ul { list-style: none; }
-
     .footer-col li { margin-bottom: 0.7rem; }
-
-    .footer-col a {
-      text-decoration: none;
-      color: var(--medium-gray);
-      font-size: 0.9rem;
-      transition: color 0.3s;
-    }
-
+    .footer-col a { text-decoration: none; color: var(--medium-gray); font-size: 0.9rem; transition: color 0.3s; }
     .footer-col a:hover { color: var(--mustard); }
+    .footer-bottom { padding: 1.5rem 5%; text-align: center; border-top: 1px solid var(--soft-gray); font-size: 0.8rem; color: var(--medium-gray); }
+    .footer-logo-text { color: var(--warm-black); }
 
-    .footer-bottom {
-      padding: 1.5rem 5%;
-      text-align: center;
-      border-top: 1px solid var(--soft-gray);
-      font-size: 0.8rem;
-      color: var(--medium-gray);
-    }
+    /* ANIMATIONS */
+    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes counterspin { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
 
-    /* ============ ANIMATIONS ============ */
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes counterspin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(-360deg); }
-    }
-
-    /* Scroll animations */
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
-
-    .animate-on-scroll.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ============ RESPONSIVE ============ */
+    /* RESPONSIVE */
     @media (max-width: 1024px) {
       .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 8rem; padding-bottom: 3rem; }
       .hero-content { padding-right: 0; text-align: center; align-items: center; }
       .hero-subtitle { margin: 0 auto 2.5rem; }
-      .hero-visual { max-width: 400px; margin: 2rem auto 0; }
+      .hero-illustration { max-width: 380px; margin: 2rem auto 0; }
       .products-grid { grid-template-columns: repeat(2, 1fr); }
       .collections-grid { grid-template-columns: repeat(2, 1fr); }
       .breeds-container { grid-template-columns: 1fr; text-align: center; }
       .breed-tags { justify-content: center; }
       footer { grid-template-columns: 1fr 1fr; }
     }
-
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .products-grid { grid-template-columns: 1fr; max-width: 360px; }
@@ -948,37 +197,10 @@
   </style>
 </head>
 <body>
-
-  <!-- ===== NAVIGATION ===== -->
+  <!-- NAV -->
   <nav id="navbar">
     <a href="#" class="nav-logo">
-      <svg class="nav-logo-icon" viewBox="0 0 44 44" fill="none">
-        <!-- Schnauzer face icon -->
-        <rect width="44" height="44" rx="12" fill="#1A1814"/>
-        <g transform="translate(6, 5)">
-          <!-- Ears -->
-          <path d="M6 4C6 2 4 0 2 2C0 4 1 8 3 10L8 8L6 4Z" fill="#D4A843"/>
-          <path d="M26 4C26 2 28 0 30 2C32 4 31 8 29 10L24 8L26 4Z" fill="#D4A843"/>
-          <!-- Head -->
-          <ellipse cx="16" cy="16" rx="12" ry="13" fill="#B8B2AA"/>
-          <!-- Eyebrows -->
-          <rect x="8" y="10" width="6" height="2.5" rx="1.25" fill="#8A847E"/>
-          <rect x="18" y="10" width="6" height="2.5" rx="1.25" fill="#8A847E"/>
-          <!-- Eyes -->
-          <circle cx="11" cy="15" r="2.5" fill="#1A1814"/>
-          <circle cx="21" cy="15" r="2.5" fill="#1A1814"/>
-          <circle cx="12" cy="14" r="0.8" fill="white"/>
-          <circle cx="22" cy="14" r="0.8" fill="white"/>
-          <!-- Schnauzer moustache / beard -->
-          <path d="M8 19C8 19 10 21 16 21C22 21 24 19 24 19C24 19 23 24 20 26C18 27.5 14 27.5 12 26C9 24 8 19 8 19Z" fill="#E8E4DE"/>
-          <path d="M10 20C10 20 12 22 16 22C20 22 22 20 22 20" stroke="#B8B2AA" stroke-width="0.6" fill="none"/>
-          <!-- Nose -->
-          <ellipse cx="16" cy="19.5" rx="2.5" ry="2" fill="#1A1814"/>
-          <ellipse cx="16.5" cy="19" rx="0.7" ry="0.5" fill="#444"/>
-          <!-- Mouth -->
-          <path d="M14 21.5C14 21.5 15 22.5 16 22.5C17 22.5 18 21.5 18 21.5" stroke="#1A1814" stroke-width="0.6" fill="none" stroke-linecap="round"/>
-        </g>
-      </svg>
+      <svg class="nav-logo-icon" viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="12" fill="#D4A843"/><g transform="translate(6,5)"><path d="M6 4C6 2 4 0 2 2C0 4 1 8 3 10L8 8L6 4Z" fill="#1A1814"/><path d="M26 4C26 2 28 0 30 2C32 4 31 8 29 10L24 8L26 4Z" fill="#1A1814"/><ellipse cx="16" cy="16" rx="12" ry="13" fill="#1A1814"/><circle cx="11" cy="15" r="2.5" fill="white"/><circle cx="21" cy="15" r="2.5" fill="white"/><circle cx="12" cy="14" r="0.8" fill="#1A1814"/><circle cx="22" cy="14" r="0.8" fill="#1A1814"/><path d="M8 19C8 19 10 21 16 21C22 21 24 19 24 19C24 19 23 24 20 26C18 27.5 14 27.5 12 26C9 24 8 19 8 19Z" fill="#D4A843"/><ellipse cx="16" cy="19.5" rx="2.5" ry="2" fill="#333"/></g></svg>
       <span class="nav-logo-text">Schnauzer<span>Stuff</span></span>
     </a>
     <ul class="nav-links">
@@ -986,432 +208,106 @@
       <li><a href="#breeds">Breeds</a></li>
       <li><a href="#">New Arrivals</a></li>
       <li><a href="#">About</a></li>
-      <li>
-        <div class="nav-cart">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-          <span class="nav-cart-badge">0</span>
-        </div>
-      </li>
+      <li><div class="nav-cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="nav-cart-badge">0</span></div></li>
     </ul>
   </nav>
 
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        Now Shipping Nationwide
-      </div>
-      <h1>
-        Made for the<br>
-        <span class="highlight">Schnauzer</span><br>
-        Obsessed
-      </h1>
-      <p class="hero-subtitle">
-        Original designs, curated gear, and everything your bearded little companion could want. By schnauzer people, for schnauzer people.
-      </p>
+      <div class="hero-badge"><span class="hero-badge-dot"></span>Now Shipping Nationwide</div>
+      <h1>Made for the<br><span class="highlight">Schnauzer</span><br>Obsessed</h1>
+      <p class="hero-subtitle">Original designs, curated gear, and everything your bearded little companion could want. By schnauzer people, for schnauzer people.</p>
       <div class="hero-actions">
-        <a href="#collections" class="btn-primary">
-          Shop Collections
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <a href="#collections" class="btn-primary">Shop Collections <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <a href="#breeds" class="btn-secondary">Our Story</a>
       </div>
     </div>
     <div class="hero-visual">
       <div class="hero-illustration">
-        <!-- Large Hero Schnauzer SVG -->
-        <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Background circle -->
-          <circle cx="250" cy="250" r="220" fill="#F5EDE3"/>
-          <circle cx="250" cy="250" r="220" stroke="#E8E4DE" stroke-width="2"/>
-
-          <!-- Sitting schnauzer body -->
-          <g transform="translate(125, 60)">
-            <!-- Body -->
-            <ellipse cx="125" cy="290" rx="75" ry="90" fill="#B8B2AA"/>
-            <!-- Chest/belly fur -->
-            <ellipse cx="125" cy="310" rx="50" ry="60" fill="#D5D0CA"/>
-            <!-- Front legs -->
-            <rect x="85" y="340" width="22" height="60" rx="11" fill="#B8B2AA"/>
-            <rect x="143" y="340" width="22" height="60" rx="11" fill="#B8B2AA"/>
-            <!-- Paws -->
-            <ellipse cx="96" cy="400" rx="14" ry="8" fill="#A5A09A"/>
-            <ellipse cx="154" cy="400" rx="14" ry="8" fill="#A5A09A"/>
-            <!-- Leg fur tufts -->
-            <path d="M80 335C80 335 90 345 96 345C102 345 110 335 110 335" fill="#D5D0CA"/>
-            <path d="M138 335C138 335 148 345 154 345C160 345 168 335 168 335" fill="#D5D0CA"/>
-
-            <!-- Head -->
-            <ellipse cx="125" cy="170" rx="80" ry="85" fill="#B8B2AA"/>
-
-            <!-- Ears -->
-            <path d="M55 120C45 90 30 70 25 80C20 90 30 130 45 145L70 135L55 120Z" fill="#A09A94"/>
-            <path d="M195 120C205 90 220 70 225 80C230 90 220 130 205 145L180 135L195 120Z" fill="#A09A94"/>
-            <!-- Inner ear -->
-            <path d="M55 115C48 95 38 80 34 87C30 94 38 125 48 137L65 130L55 115Z" fill="#C4B5A8"/>
-            <path d="M195 115C202 95 212 80 216 87C220 94 212 125 202 137L185 130L195 115Z" fill="#C4B5A8"/>
-
-            <!-- Eyebrow ridges -->
-            <rect x="70" y="140" width="35" height="14" rx="7" fill="#9A9590"/>
-            <rect x="145" y="140" width="35" height="14" rx="7" fill="#9A9590"/>
-
-            <!-- Eyes -->
-            <circle cx="87" cy="165" r="14" fill="#1A1814"/>
-            <circle cx="163" cy="165" r="14" fill="#1A1814"/>
-            <circle cx="92" cy="160" r="4.5" fill="white"/>
-            <circle cx="168" cy="160" r="4.5" fill="white"/>
-            <circle cx="85" cy="168" r="2" fill="white" opacity="0.4"/>
-            <circle cx="161" cy="168" r="2" fill="white" opacity="0.4"/>
-
-            <!-- Schnauzer beard / moustache -->
-            <path d="M60 185C60 185 75 205 125 205C175 205 190 185 190 185C190 185 185 225 165 245C150 258 100 258 85 245C65 225 60 185 60 185Z" fill="#E8E4DE"/>
-            <!-- Beard texture lines -->
-            <path d="M80 200C80 200 95 215 125 215C155 215 170 200 170 200" stroke="#D5D0CA" stroke-width="1.5" fill="none"/>
-            <path d="M85 210C85 210 100 225 125 225C150 225 165 210 165 210" stroke="#D5D0CA" stroke-width="1" fill="none"/>
-            <path d="M90 220C90 220 105 232 125 232C145 232 160 220 160 220" stroke="#D5D0CA" stroke-width="0.8" fill="none"/>
-
-            <!-- Nose -->
-            <ellipse cx="125" cy="195" rx="16" ry="12" fill="#1A1814"/>
-            <ellipse cx="128" cy="192" rx="4" ry="3" fill="#333"/>
-            <!-- Nostrils -->
-            <ellipse cx="120" cy="196" rx="3" ry="2" fill="#333"/>
-            <ellipse cx="130" cy="196" rx="3" ry="2" fill="#333"/>
-
-            <!-- Mouth -->
-            <path d="M115 207C115 207 120 213 125 213C130 213 135 207 135 207" stroke="#1A1814" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-
-            <!-- Tail -->
-            <path d="M185 260C200 245 215 230 218 210C220 195 210 190 205 200C200 215 195 240 185 260Z" fill="#B8B2AA"/>
-          </g>
-
-          <!-- Decorative elements -->
-          <circle cx="80" cy="120" r="6" fill="#D4A843" opacity="0.3"/>
-          <circle cx="420" cy="380" r="8" fill="#8B9A7E" opacity="0.3"/>
-          <circle cx="400" cy="100" r="4" fill="#C4705A" opacity="0.3"/>
-          <!-- Stars -->
-          <path d="M90 380L93 388L101 388L95 393L97 401L90 396L83 401L85 393L79 388L87 388Z" fill="#D4A843" opacity="0.2"/>
-          <path d="M410 180L412 186L418 186L413 189L415 195L410 192L405 195L407 189L402 186L408 186Z" fill="#D4A843" opacity="0.2"/>
-        </svg>
-
-        <!-- Floating tags -->
-        <div class="floating-tag tag-1">
-          <div class="tag-icon mustard">🎨</div>
-          <span>Original Art</span>
-        </div>
-        <div class="floating-tag tag-2">
-          <div class="tag-icon sage">🐾</div>
-          <span>Dog Approved</span>
-        </div>
-        <div class="floating-tag tag-3">
-          <div class="tag-icon terracotta">📦</div>
-          <span>Free Shipping 50+</span>
-        </div>
+        <img class="hero-mascot" src="max.png" alt="Max the Schnauzer — SchnauzerStuff mascot">
+        <div class="floating-tag tag-1"><div class="tag-icon mustard">🎨</div><span>Original Art</span></div>
+        <div class="floating-tag tag-2"><div class="tag-icon sage">🐾</div><span>Dog Approved</span></div>
+        <div class="floating-tag tag-3"><div class="tag-icon terracotta">📦</div><span>Free Shipping $50+</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== SOCIAL PROOF ===== -->
+  <!-- SOCIAL PROOF -->
   <div class="social-proof animate-on-scroll">
-    <div class="proof-item">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <span><strong>4.9/5</strong> from 2,400+ reviews</span>
-    </div>
-    <div class="proof-item">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      <span><strong>15,000+</strong> schnauzer lovers</span>
-    </div>
-    <div class="proof-item">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-      <span><strong>Free shipping</strong> on orders $50+</span>
-    </div>
+    <div class="proof-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span><strong>4.9/5</strong> from 2,400+ reviews</span></div>
+    <div class="proof-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span><strong>15,000+</strong> schnauzer lovers</span></div>
+    <div class="proof-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span><strong>Free shipping</strong> on orders $50+</span></div>
   </div>
 
-  <!-- ===== COLLECTIONS ===== -->
+  <!-- COLLECTIONS -->
   <section class="collections" id="collections">
-    <div class="section-header animate-on-scroll">
-      <div class="section-eyebrow">Collections</div>
-      <h2 class="section-title">Shop by Category</h2>
-      <p class="section-subtitle">From cozy apparel to pup-perfect accessories, find your new favorite schnauzer thing.</p>
-    </div>
+    <div class="section-header animate-on-scroll"><div class="section-eyebrow">Collections</div><h2 class="section-title">Shop by Category</h2><p class="section-subtitle">From cozy apparel to pup-perfect accessories, find your new favorite schnauzer thing.</p></div>
     <div class="collections-grid">
-      <div class="collection-card animate-on-scroll">
-        <div class="collection-card-bg" style="background: linear-gradient(135deg, #E8DDD0 0%, #D5C9B8 100%); display: flex; align-items: center; justify-content: center; font-size: 6rem;">👕</div>
-        <div class="collection-card-overlay"></div>
-        <div class="collection-card-content">
-          <div class="collection-card-label">Most Popular</div>
-          <div class="collection-card-title">Apparel</div>
-          <div class="collection-card-count">42 products</div>
-        </div>
-        <div class="collection-card-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-        </div>
-      </div>
-      <div class="collection-card animate-on-scroll" style="animation-delay: 0.1s">
-        <div class="collection-card-bg" style="background: linear-gradient(135deg, #D0DDD5 0%, #B8C9BC 100%); display: flex; align-items: center; justify-content: center; font-size: 6rem;">☕</div>
-        <div class="collection-card-overlay"></div>
-        <div class="collection-card-content">
-          <div class="collection-card-label">Gift Favorites</div>
-          <div class="collection-card-title">Home & Mugs</div>
-          <div class="collection-card-count">28 products</div>
-        </div>
-        <div class="collection-card-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-        </div>
-      </div>
-      <div class="collection-card animate-on-scroll" style="animation-delay: 0.2s">
-        <div class="collection-card-bg" style="background: linear-gradient(135deg, #DDD5D0 0%, #C9BBB5 100%); display: flex; align-items: center; justify-content: center; font-size: 6rem;">🐕</div>
-        <div class="collection-card-overlay"></div>
-        <div class="collection-card-content">
-          <div class="collection-card-label">For Your Pup</div>
-          <div class="collection-card-title">Dog Gear</div>
-          <div class="collection-card-count">19 products</div>
-        </div>
-        <div class="collection-card-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-        </div>
-      </div>
+      <div class="collection-card animate-on-scroll"><div class="collection-card-bg" style="background:linear-gradient(135deg,#E8DDD0,#D5C9B8);display:flex;align-items:center;justify-content:center;font-size:6rem;">👕</div><div class="collection-card-overlay"></div><div class="collection-card-content"><div class="collection-card-label">Most Popular</div><div class="collection-card-title">Apparel</div><div class="collection-card-count">42 products</div></div><div class="collection-card-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div></div>
+      <div class="collection-card animate-on-scroll"><div class="collection-card-bg" style="background:linear-gradient(135deg,#D0DDD5,#B8C9BC);display:flex;align-items:center;justify-content:center;font-size:6rem;">☕</div><div class="collection-card-overlay"></div><div class="collection-card-content"><div class="collection-card-label">Gift Favorites</div><div class="collection-card-title">Home &amp; Mugs</div><div class="collection-card-count">28 products</div></div><div class="collection-card-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div></div>
+      <div class="collection-card animate-on-scroll"><div class="collection-card-bg" style="background:linear-gradient(135deg,#DDD5D0,#C9BBB5);display:flex;align-items:center;justify-content:center;font-size:6rem;">🐕</div><div class="collection-card-overlay"></div><div class="collection-card-content"><div class="collection-card-label">For Your Pup</div><div class="collection-card-title">Dog Gear</div><div class="collection-card-count">19 products</div></div><div class="collection-card-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div></div>
     </div>
   </section>
 
-  <!-- ===== FEATURED PRODUCTS ===== -->
+  <!-- PRODUCTS -->
   <section class="featured" id="featured">
-    <div class="section-header animate-on-scroll">
-      <div class="section-eyebrow">Just Dropped</div>
-      <h2 class="section-title">Best Sellers</h2>
-      <p class="section-subtitle">The designs our schnauzer community can't stop buying.</p>
-    </div>
+    <div class="section-header animate-on-scroll"><div class="section-eyebrow">Just Dropped</div><h2 class="section-title">Best Sellers</h2><p class="section-subtitle">The designs our schnauzer community can't stop buying.</p></div>
     <div class="products-grid">
-      <div class="product-card animate-on-scroll">
-        <div class="product-image">
-          <div class="product-image-bg" style="background: linear-gradient(135deg, #F0EBE3 0%, #E5DDD3 100%);">
-            <svg width="120" height="120" viewBox="0 0 120 120"><rect x="20" y="15" width="80" height="90" rx="4" fill="#B8B2AA" opacity="0.3"/><text x="60" y="65" text-anchor="middle" font-size="50">👕</text></svg>
-          </div>
-          <button class="product-wishlist">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-          <span class="product-badge">Bestseller</span>
-        </div>
-        <div class="product-info">
-          <div class="product-category">Apparel</div>
-          <div class="product-name">Classic Schnauzer Silhouette Tee</div>
-          <div class="product-price">
-            <span class="current">$32.00</span>
-          </div>
-          <div class="product-rating">
-            <span class="stars">★★★★★</span>
-            <span>(124)</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card animate-on-scroll" style="animation-delay: 0.1s">
-        <div class="product-image">
-          <div class="product-image-bg" style="background: linear-gradient(135deg, #E3EBE6 0%, #D3E0D8 100%);">
-            <svg width="120" height="120" viewBox="0 0 120 120"><text x="60" y="72" text-anchor="middle" font-size="55">☕</text></svg>
-          </div>
-          <button class="product-wishlist">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-          <span class="product-badge" style="background: var(--sage);">New</span>
-        </div>
-        <div class="product-info">
-          <div class="product-category">Home</div>
-          <div class="product-name">"But First, Schnauzers" Ceramic Mug</div>
-          <div class="product-price">
-            <span class="current">$18.00</span>
-          </div>
-          <div class="product-rating">
-            <span class="stars">★★★★★</span>
-            <span>(89)</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card animate-on-scroll" style="animation-delay: 0.2s">
-        <div class="product-image">
-          <div class="product-image-bg" style="background: linear-gradient(135deg, #EBE6E3 0%, #DDD5CF 100%);">
-            <svg width="120" height="120" viewBox="0 0 120 120"><text x="60" y="72" text-anchor="middle" font-size="55">🎒</text></svg>
-          </div>
-          <button class="product-wishlist">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-        </div>
-        <div class="product-info">
-          <div class="product-category">Accessories</div>
-          <div class="product-name">Schnauzer Portrait Tote Bag</div>
-          <div class="product-price">
-            <span class="current">$24.00</span>
-            <span class="original">$30.00</span>
-          </div>
-          <div class="product-rating">
-            <span class="stars">★★★★</span>
-            <span>(56)</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card animate-on-scroll" style="animation-delay: 0.3s">
-        <div class="product-image">
-          <div class="product-image-bg" style="background: linear-gradient(135deg, #E8E3EB 0%, #D8D0DD 100%);">
-            <svg width="120" height="120" viewBox="0 0 120 120"><text x="60" y="72" text-anchor="middle" font-size="55">📱</text></svg>
-          </div>
-          <button class="product-wishlist">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-        </div>
-        <div class="product-info">
-          <div class="product-category">Tech</div>
-          <div class="product-name">Mini Schnauzer Watercolor Phone Case</div>
-          <div class="product-price">
-            <span class="current">$22.00</span>
-          </div>
-          <div class="product-rating">
-            <span class="stars">★★★★★</span>
-            <span>(71)</span>
-          </div>
-        </div>
-      </div>
+      <div class="product-card animate-on-scroll"><div class="product-image"><div class="product-image-bg" style="background:linear-gradient(135deg,#F0EBE3,#E5DDD3);"><svg width="120" height="120" viewBox="0 0 120 120"><text x="60" y="65" text-anchor="middle" font-size="50">👕</text></svg></div><button class="product-wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><span class="product-badge">Bestseller</span></div><div class="product-info"><div class="product-category">Apparel</div><div class="product-name">Classic Schnauzer Silhouette Tee</div><div class="product-price"><span class="current">$32.00</span></div><div class="product-rating"><span class="stars">★★★★★</span><span>(124)</span></div></div></div>
+      <div class="product-card animate-on-scroll"><div class="product-image"><div class="product-image-bg" style="background:linear-gradient(135deg,#E3EBE6,#D3E0D8);"><svg width="120" height="120" viewBox="0 0 120 120"><text x="60" y="72" text-anchor="middle" font-size="55">☕</text></svg></div><button class="product-wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><span class="product-badge" style="background:var(--sage);">New</span></div><div class="product-info"><div class="product-category">Home</div><div class="product-name">"But First, Schnauzers" Ceramic Mug</div><div class="product-price"><span class="current">$18.00</span></div><div class="product-rating"><span class="stars">★★★★★</span><span>(89)</span></div></div></div>
+      <div class="product-card animate-on-scroll"><div class="product-image"><div class="product-image-bg" style="background:linear-gradient(135deg,#EBE6E3,#DDD5CF);"><svg width="120" height="120" viewBox="0 0 120 120"><text x="60" y="72" text-anchor="middle" font-size="55">🎒</text></svg></div><button class="product-wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="product-info"><div class="product-category">Accessories</div><div class="product-name">Schnauzer Portrait Tote Bag</div><div class="product-price"><span class="current">$24.00</span><span class="original">$30.00</span></div><div class="product-rating"><span class="stars">★★★★</span><span>(56)</span></div></div></div>
+      <div class="product-card animate-on-scroll"><div class="product-image"><div class="product-image-bg" style="background:linear-gradient(135deg,#E8E3EB,#D8D0DD);"><svg width="120" height="120" viewBox="0 0 120 120"><text x="60" y="72" text-anchor="middle" font-size="55">📱</text></svg></div><button class="product-wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="product-info"><div class="product-category">Tech</div><div class="product-name">Mini Schnauzer Watercolor Phone Case</div><div class="product-price"><span class="current">$22.00</span></div><div class="product-rating"><span class="stars">★★★★★</span><span>(71)</span></div></div></div>
     </div>
   </section>
 
-  <!-- ===== BREED SHOWCASE ===== -->
+  <!-- BREEDS -->
   <section class="breeds" id="breeds">
     <div class="breeds-container">
       <div class="breeds-illustration animate-on-scroll">
-        <div class="breed-circle" style="background: radial-gradient(circle, var(--warm-cream) 0%, transparent 70%);">
-          <span class="main" style="font-size: 10rem;">🐕</span>
-          <div class="breed-orbit">
-            <div class="breed-orbit-item">🦴</div>
-            <div class="breed-orbit-item">❤️</div>
-            <div class="breed-orbit-item">🎾</div>
-            <div class="breed-orbit-item">⭐</div>
-          </div>
+        <div class="breed-img-wrap">
+          <img src="max.png" alt="Max the Schnauzer">
+          <div class="breed-orbit"><div class="breed-orbit-item">🦴</div><div class="breed-orbit-item">❤️</div><div class="breed-orbit-item">🎾</div><div class="breed-orbit-item">⭐</div></div>
         </div>
       </div>
       <div class="breeds-content animate-on-scroll">
         <div class="section-eyebrow">Three Sizes, One Love</div>
         <h2>Every Schnauzer.<br>Every Style.</h2>
-        <p>
-          Whether your best friend is a spirited Mini, a loyal Standard, or a gentle Giant, we've got designs that celebrate their unique personality. Most of our artwork features the beloved Miniature Schnauzer, but every bearded buddy is welcome here.
-        </p>
-        <div class="breed-tags">
-          <span class="breed-tag active">🐾 Miniature</span>
-          <span class="breed-tag">🐾 Standard</span>
-          <span class="breed-tag">🐾 Giant</span>
-          <span class="breed-tag">🎨 All Breeds</span>
-        </div>
-        <a href="#" class="btn-primary">
-          Shop by Breed
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <p>Whether your best friend is a spirited Mini, a loyal Standard, or a gentle Giant, we've got designs that celebrate their unique personality. Most of our artwork features the beloved Miniature Schnauzer, but every bearded buddy is welcome here.</p>
+        <div class="breed-tags"><span class="breed-tag active">🐾 Miniature</span><span class="breed-tag">🐾 Standard</span><span class="breed-tag">🐾 Giant</span><span class="breed-tag">🎨 All Breeds</span></div>
+        <a href="#" class="btn-primary">Shop by Breed <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
   </section>
 
-  <!-- ===== NEWSLETTER ===== -->
+  <!-- NEWSLETTER -->
   <section class="newsletter">
     <div class="newsletter-content animate-on-scroll">
       <h2>Join the <span>Pack</span></h2>
       <p>Get 10% off your first order plus exclusive drops, schnauzer care tips, and way too many cute photos in your inbox.</p>
-      <form class="newsletter-form" onsubmit="event.preventDefault();">
-        <input type="email" placeholder="your@email.com" required>
-        <button type="submit">Subscribe</button>
-      </form>
+      <form class="newsletter-form" onsubmit="event.preventDefault();"><input type="email" placeholder="your@email.com" required><button type="submit">Subscribe</button></form>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-brand">
-      <a href="#" class="nav-logo">
-        <svg class="nav-logo-icon" viewBox="0 0 44 44" fill="none" width="40" height="40">
-          <rect width="44" height="44" rx="12" fill="#1A1814"/>
-          <g transform="translate(6, 5)">
-            <path d="M6 4C6 2 4 0 2 2C0 4 1 8 3 10L8 8L6 4Z" fill="#D4A843"/>
-            <path d="M26 4C26 2 28 0 30 2C32 4 31 8 29 10L24 8L26 4Z" fill="#D4A843"/>
-            <ellipse cx="16" cy="16" rx="12" ry="13" fill="#B8B2AA"/>
-            <rect x="8" y="10" width="6" height="2.5" rx="1.25" fill="#8A847E"/>
-            <rect x="18" y="10" width="6" height="2.5" rx="1.25" fill="#8A847E"/>
-            <circle cx="11" cy="15" r="2.5" fill="#1A1814"/>
-            <circle cx="21" cy="15" r="2.5" fill="#1A1814"/>
-            <circle cx="12" cy="14" r="0.8" fill="white"/>
-            <circle cx="22" cy="14" r="0.8" fill="white"/>
-            <path d="M8 19C8 19 10 21 16 21C22 21 24 19 24 19C24 19 23 24 20 26C18 27.5 14 27.5 12 26C9 24 8 19 8 19Z" fill="#E8E4DE"/>
-            <ellipse cx="16" cy="19.5" rx="2.5" ry="2" fill="#1A1814"/>
-            <path d="M14 21.5C14 21.5 15 22.5 16 22.5C17 22.5 18 21.5 18 21.5" stroke="#1A1814" stroke-width="0.6" fill="none" stroke-linecap="round"/>
-          </g>
-        </svg>
-        <span class="nav-logo-text">Schnauzer<span>Stuff</span></span>
-      </a>
-      <p>Original schnauzer designs & curated gear for the most passionate dog people on the planet.</p>
-      <div class="footer-social">
-        <a href="#">IG</a>
-        <a href="#">FB</a>
-        <a href="#">TT</a>
-        <a href="#">PT</a>
-      </div>
+      <a href="#" class="nav-logo"><svg class="nav-logo-icon" viewBox="0 0 44 44" fill="none" width="40" height="40"><rect width="44" height="44" rx="12" fill="#D4A843"/><g transform="translate(6,5)"><path d="M6 4C6 2 4 0 2 2C0 4 1 8 3 10L8 8L6 4Z" fill="#1A1814"/><path d="M26 4C26 2 28 0 30 2C32 4 31 8 29 10L24 8L26 4Z" fill="#1A1814"/><ellipse cx="16" cy="16" rx="12" ry="13" fill="#1A1814"/><circle cx="11" cy="15" r="2.5" fill="white"/><circle cx="21" cy="15" r="2.5" fill="white"/><path d="M8 19C8 19 10 21 16 21C22 21 24 19 24 19C24 19 23 24 20 26C18 27.5 14 27.5 12 26C9 24 8 19 8 19Z" fill="#D4A843"/><ellipse cx="16" cy="19.5" rx="2.5" ry="2" fill="#333"/></g></svg><span class="nav-logo-text footer-logo-text">Schnauzer<span>Stuff</span></span></a>
+      <p>Original schnauzer designs &amp; curated gear for the most passionate dog people on the planet.</p>
+      <div class="footer-social"><a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">PT</a></div>
     </div>
-    <div class="footer-col">
-      <h4>Shop</h4>
-      <ul>
-        <li><a href="#">All Products</a></li>
-        <li><a href="#">Apparel</a></li>
-        <li><a href="#">Home & Mugs</a></li>
-        <li><a href="#">Dog Gear</a></li>
-        <li><a href="#">Stickers</a></li>
-        <li><a href="#">Gift Cards</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Breeds</h4>
-      <ul>
-        <li><a href="#">Miniature</a></li>
-        <li><a href="#">Standard</a></li>
-        <li><a href="#">Giant</a></li>
-        <li><a href="#">All Breeds</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Help</h4>
-      <ul>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Shipping & Returns</a></li>
-        <li><a href="#">Size Guide</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="#">All Products</a></li><li><a href="#">Apparel</a></li><li><a href="#">Home &amp; Mugs</a></li><li><a href="#">Dog Gear</a></li><li><a href="#">Stickers</a></li><li><a href="#">Gift Cards</a></li></ul></div>
+    <div class="footer-col"><h4>Breeds</h4><ul><li><a href="#">Miniature</a></li><li><a href="#">Standard</a></li><li><a href="#">Giant</a></li><li><a href="#">All Breeds</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Size Guide</a></li><li><a href="#">FAQ</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
   </footer>
-  <div class="footer-bottom">
-    &copy; 2026 SchnauzerStuff. All rights reserved. Made with ❤️ and way too many treats.
-  </div>
+  <div class="footer-bottom">&copy; 2026 SchnauzerStuff. All rights reserved. Made with ❤️ and way too many treats.</div>
 
   <script>
-    // Nav scroll effect
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Scroll animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
-    // Breed tag toggle
-    document.querySelectorAll('.breed-tag').forEach(tag => {
-      tag.addEventListener('click', () => {
-        document.querySelectorAll('.breed-tag').forEach(t => t.classList.remove('active'));
-        tag.classList.add('active');
-      });
-    });
+    document.querySelectorAll('.breed-tag').forEach(tag => { tag.addEventListener('click', () => { document.querySelectorAll('.breed-tag').forEach(t => t.classList.remove('active')); tag.classList.add('active'); }); });
   </script>
 </body>
 </html>
